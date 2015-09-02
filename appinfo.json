@@ -1,0 +1,22 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "grimbixcode@gmail.com",
+    "longName": "AxisRay",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "AxisRay",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "2cfb2847-8c28-4f5f-970e-105c9898145f",
+    "versionLabel": "0.1",
+    "watchapp": {
+        "watchface": false
+    }
+}
