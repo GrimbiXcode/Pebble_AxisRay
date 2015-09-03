@@ -27,22 +27,41 @@ static TextLayer *s_output_layer;
 * Routines
 *
 ********************************************************************/
+/*===================================================================
+* Name:    data_handler(AccelData *data, uint32_t num_samples)
+* Descr.:  
+* Input:   AccelData *data, uint32_t num_samples 
+* Output:  none
+*==================================================================*/
 static void data_handler(AccelData *data, uint32_t num_samples) {
   // Long lived buffer
   static char s_buffer[128];
+  static int32_t num_average[3];
 
+  // Calculate average
+  num_average[0]=((int32_t)(data[0].x)+(int32_t)(data[1].x)+(int32_t)(data[2].x))/3;
+  num_average[1]=((int32_t)(data[0].y)+(int32_t)(data[1].y)+(int32_t)(data[2].y))/3;  
+  num_average[2]=((int32_t)(data[0].z)+(int32_t)(data[1].z)+(int32_t)(data[2].z))/3;
+  
   // Compose string of all data
   snprintf(s_buffer, sizeof(s_buffer), 
-    "N X,Y,Z\n0 %d,%d,%d\n1 %d,%d,%d\n2 %d,%d,%d", 
+    "N X,Y,Z\n0 %d,%d,%d\n1 %d,%d,%d\n2 %d,%d,%d\nA %d %d %d", 
     data[0].x, data[0].y, data[0].z, 
     data[1].x, data[1].y, data[1].z, 
-    data[2].x, data[2].y, data[2].z
+    data[2].x, data[2].y, data[2].z,
+    (int)num_average[0], (int)num_average[1], (int)num_average[2]       
   );
 
   //Show the data
   text_layer_set_text(s_output_layer, s_buffer);
 }
 
+/*===================================================================
+* Name:    data_handler(AccelData *data, uint32_t num_samples)
+* Descr.:  
+* Input:   AccelAxisType axis, int32_t direction
+* Output:  none
+*==================================================================*/
 static void tap_handler(AccelAxisType axis, int32_t direction) {
   switch (axis) {
   case ACCEL_AXIS_X:
@@ -119,7 +138,7 @@ static void init() {
     accel_data_service_subscribe(num_samples, data_handler);
 
     // Choose update rate
-    accel_service_set_sampling_rate(ACCEL_SAMPLING_100HZ);
+    accel_service_set_sampling_rate(ACCEL_SAMPLING_25HZ);
   }
 }
 
