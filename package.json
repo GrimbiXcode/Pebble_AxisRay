@@ -1,0 +1,24 @@
+{
+    "author": "grimbixcode@gmail.com",
+    "dependencies": {},
+    "keywords": [],
+    "name": "axisray",
+    "pebble": {
+        "displayName": "AxisRay",
+        "enableMultiJS": false,
+        "messageKeys": {},
+        "projectType": "native",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "basalt"
+        ],
+        "uuid": "2cfb2847-8c28-4f5f-970e-105c9898145f",
+        "watchapp": {
+            "watchface": false
+        }
+    },
+    "version": "0.1.0"
+}
